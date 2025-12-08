@@ -37,32 +37,33 @@
     }
 
     header {
-      padding: 70px 20px;
+      /* Mobile adjustment: Use viewport units or smaller padding */
+      padding: 40px 15px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
     header h1 {
-      font-size: 3rem;
+      font-size: 2.5rem; /* Reduced for mobile */
       margin: 0;
     }
 
     header p {
       max-width: 650px;
-      margin: 15px auto 0 auto;
-      font-size: 1.2rem;
-      line-height: 1.5;
+      margin: 10px auto 0 auto; /* Reduced margin for mobile */
+      font-size: 1.1rem; /* Reduced for mobile */
+      line-height: 1.4;
     }
 
     /* Floating pastel shapes */
     .float-shape {
       position: absolute;
-      width: 200px;
-      height: 200px;
+      width: 150px; /* Reduced size for mobile */
+      height: 150px;
       background: var(--pastel-accent-1);
       border-radius: 50%;
-      filter: blur(60px);
+      filter: blur(50px);
       animation: float 8s ease-in-out infinite;
       opacity: 0.6;
     }
@@ -71,18 +72,17 @@
 
     @keyframes float {
       0% { transform: translateY(0px) translateX(0px); }
-      50% { transform: translateY(-40px) translateX(30px); }
+      50% { transform: translateY(-30px) translateX(20px); }
       100% { transform: translateY(0px) translateX(0px); }
     }
 
     nav {
       display: flex;
-      /* Use flex-wrap to allow wrapping on smaller screens */
-      flex-wrap: wrap;
+      flex-wrap: wrap; /* Allows links to wrap onto new lines */
       justify-content: center;
-      gap: 10px; /* Reduced gap for mobile */
+      gap: 8px; /* Reduced gap for a tighter fit on small screens */
       background: transparent;
-      padding: 15px 0;
+      padding: 10px 5px; /* Reduced vertical padding and added small horizontal padding */
       position: sticky;
       top: 0;
       z-index: 20;
@@ -91,32 +91,30 @@
 
     nav a {
       text-decoration: none;
-      /* Reduced padding for smaller buttons on mobile */
-      padding: 8px 12px;
-      border-radius: 12px;
+      padding: 8px 10px; /* Reduced padding for smaller buttons */
+      border-radius: 10px; /* Slightly smaller border-radius */
       font-weight: 600;
       transition: 0.3s;
       color: inherit;
-      /* Ensure links don't shrink too much */
-      flex-shrink: 0; 
-      font-size: 0.9rem; /* Smaller font for nav links on mobile */
+      font-size: 0.85rem; /* Smaller font for nav links on mobile */
+      flex-shrink: 0; /* Prevents shrinking */
     }
 
     nav a:hover {
       background: var(--dark-accent);
       color: black;
-      box-shadow: 0 0 12px var(--dark-accent);
+      box-shadow: 0 0 10px var(--dark-accent);
     }
 
     body.light nav a:hover {
       background: var(--pastel-accent-2);
-      box-shadow: 0 0 12px var(--pastel-accent-2);
+      box-shadow: 0 0 10px var(--pastel-accent-2);
     }
 
     section {
       max-width: 900px;
       margin: 40px auto; /* Reduced vertical margin for mobile */
-      padding: 0 15px; /* Reduced horizontal padding for mobile */
+      padding: 0 15px;
       opacity: 0;
       transform: translateY(30px);
       animation: fadeUp 1s forwards;
@@ -151,8 +149,8 @@
     /* Gallery */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Min size reduced for mobile */
-      gap: 10px; /* Reduced gap for mobile */
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
       margin-top: 20px;
     }
 
@@ -173,28 +171,28 @@
 
 /* Dropdown button */
 .dropbtn {
-  padding: 8px 12px; /* Adjusted padding to match nav links */
-  border-radius: 12px;
+  padding: 8px 10px; /* Matched nav link padding */
+  border-radius: 10px;
   font-weight: 600;
   color: inherit;
   text-decoration: none;
   transition: 0.3s;
-  font-size: 0.9rem; /* Smaller font for dropdown button on mobile */
+  font-size: 0.85rem; /* Matched nav link font size */
 }
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
   position: absolute;
-  /* Adjust position for mobile, potentially centered or left-aligned */
-  left: 50%;
-  transform: translateX(-50%);
   background: var(--dark-card);
-  min-width: 200px; /* Reduced min-width for mobile */
+  min-width: 200px; /* Reduced min-width */
   padding: 10px 0;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
   z-index: 50;
+  /* Ensure dropdown is centered or aligned nicely */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Links inside dropdown */
@@ -204,7 +202,7 @@
   color: inherit;
   text-decoration: none;
   transition: 0.25s;
-  font-size: 0.9rem; /* Smaller font inside dropdown */
+  font-size: 0.9rem; /* Keep this slightly larger than nav links for readability */
 }
 
 /* Hover highlight */
@@ -234,8 +232,8 @@
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 8px 12px; /* same as nav links */
-  border-radius: 12px;
+  /* Removed height property to match flex content height */
+  border-radius: 10px;
   font-weight: 600;
   color: inherit;
   text-decoration: none;
@@ -243,69 +241,63 @@
 
 /* --- Masonry/Column Layout Adjustments for Mobile --- */
 
-/* Default setting for masonry (desktop) */
+/* Base style for masonry - ensures custom inline styles are overridden on mobile */
 .masonry {
+    /* Set default for desktop */
     column-count: 3;
     column-gap: 20px;
 }
 
-/* Override Masonry for small screens */
-@media (max-width: 768px) {
-    /* For smaller screens, force single column layout */
+/* Media Query for mobile devices */
+@media (max-width: 600px) {
+    /* Force single column layout for all masonry sections */
     .masonry {
         column-count: 1 !important;
         column-gap: 0 !important;
     }
     
-    /* Ensure items in the masonry layout still have their margin */
-    .masonry-item {
-        margin-bottom: 20px !important;
-        /* Ensure items fill the space for single column */
-        width: 100% !important; 
-    }
-}
-
-
-/* Specific fix for the Purdue WALC row which is not a standard masonry layout */
-.masonry-row {
-    display: flex;
-    flex-direction: row; /* Default: horizontal */
-    align-items: center;
-    gap: 30px;
-}
-
-/* Stack the WALC images vertically on mobile */
-@media (max-width: 600px) {
-    .masonry-row {
-        flex-direction: column; /* Stack vertically on small screens */
-        gap: 15px; /* Reduced gap */
-    }
+    /* Ensure items take full width and maintain vertical spacing */
     .masonry-item {
         width: 100% !important;
+        margin-bottom: 20px !important;
+        break-inside: avoid;
     }
-    /* Hide the arrows on the stacked mobile view */
-    .masonry-row > div:nth-child(even) {
-        display: none;
-    }
-}
 
-
-/* --- General Mobile Font Size Adjustments --- */
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 2.5rem; /* Smaller main heading */
-    }
-    header p {
-        font-size: 1rem; /* Smaller subheading */
-    }
-    section h2 {
-        font-size: 1.5rem; /* Smaller section headings */
-    }
-    /* Hide float shapes on very small screens to save space/performance */
+    /* Hide shapes and reduce text sizes on smaller screens */
     .float-shape {
         display: none;
     }
+    header h1 {
+        font-size: 2rem;
+    }
+    header p {
+        font-size: 1rem;
+    }
+    
+    /* Research section specific fix: float left/right will stack */
+    .card p span[style="float:right;"] {
+        float: none !important;
+        display: block;
+        margin-top: 5px;
+    }
+
+    /* WALC image row stacking */
+    #modelling .masonry[style*="flex-direction:column"] {
+        display: block !important; /* Switch to block layout */
+    }
+    .masonry-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .masonry-row > div:nth-child(even) {
+        display: none; /* Hide the arrows */
+    }
+    .caption-card {
+        max-width: 100% !important;
+    }
+
 }
+/* End of Media Query */
 
 .custom-link {
     color: var(--dark-accent);
@@ -317,6 +309,14 @@
 .custom-link:hover {
     text-decoration: underline;
 }
+
+/* Additional fix for the research card titles to prevent overlap on mobile */
+@media (max-width: 450px) {
+    .card h2 {
+        font-size: 1.1rem;
+    }
+}
+
 
   </style>
 </head>
@@ -377,7 +377,9 @@
 <div class="card">
 <h2 style="margin-bottom:10px;">Bayesian Deep Learning</h2>
 <p><em>Professor Ruqi Zhang, Junbo Li <span style="float:right;">June 2024–July 2025</span></em></p>
+<p style="line-height:1.55; opacity:0.9;">
 I developed SDSI, a variational inference framework that restricts posterior variances to a sparse, low-dimensional subspace, enabling scalable Bayesian neural networks with improved efficiency. The method introduces a subspace addition strategy that preserves high-gradient directions, resulting in enhanced predictive accuracy and calibration across both clean and corrupted datasets. SDSI achieved 76.36% accuracy, 0.9655 AUROC, and 0.0014 ECE on CIFAR-100 (10% subnet), outperforming Sparse BNNs, VBLL approaches, and Laplace Subnetworks. Notably, the framework reaches full BNN-level predictive performance while requiring only 40 training epochs, significantly reducing computational cost.
+</p>
 </div>
 
 <div class="card">
@@ -515,7 +517,7 @@ IEEE International Conference on Rebooting Computing (ICRC) - First Author</stro
  
   <section id="metals">
     <h2>Metal Work</h2>
-  <div class="masonry" style="column-count:3; column-gap:20px;">
+  <div class="masonry">
 
 
 <div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
@@ -546,7 +548,7 @@ IEEE International Conference on Rebooting Computing (ICRC) - First Author</stro
 <h2 style="text-align:center;">3D Animation</h2>
 
 
-<div class="masonry" style="column-count:3; column-gap:20px;">
+<div class="masonry">
 
 
 <div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
@@ -591,7 +593,7 @@ IEEE International Conference on Rebooting Computing (ICRC) - First Author</stro
 </div>
 
 <h2 style="text-align:center;">CAD Modelling</h2>
-<div class="masonry" style="column-count:3; column-gap:20px;">
+<div class="masonry">
 
 <div class="masonry-item" style="break-inside:avoid; margin-bottom:12px; background:var(--dark-card); padding:6px; border-radius:12px;">
   <img src="images/wheel.png" style="width:100%; border-radius:8px;" />
@@ -655,7 +657,7 @@ IEEE International Conference on Rebooting Computing (ICRC) - First Author</stro
 </div>
 </div>
 
-<div class="caption-card" style="background:var(--dark-card); padding:14px 20px; border-radius:16px; text-align:center; opacity:0.9; max-width:600px;\">
+<div class="caption-card" style="background:var(--dark-card); padding:14px 20px; border-radius:16px; text-align:center; opacity:0.9; max-width:600px;">
 Purdue WALC – From concept to creation.
 </div>
 
@@ -746,7 +748,7 @@ Purdue WALC – From concept to creation.
   </a>
 </p>
 <h2>Ceramics</h2>
-<div class="masonry" style="column-count:3; column-gap:20px;">
+<div class="masonry">
 
 
 <div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
