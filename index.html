@@ -77,8 +77,10 @@
 
     nav {
       display: flex;
+      /* Use flex-wrap to allow wrapping on smaller screens */
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 10px; /* Reduced gap for mobile */
       background: transparent;
       padding: 15px 0;
       position: sticky;
@@ -89,11 +91,15 @@
 
     nav a {
       text-decoration: none;
-      padding: 10px 18px;
+      /* Reduced padding for smaller buttons on mobile */
+      padding: 8px 12px;
       border-radius: 12px;
       font-weight: 600;
       transition: 0.3s;
       color: inherit;
+      /* Ensure links don't shrink too much */
+      flex-shrink: 0; 
+      font-size: 0.9rem; /* Smaller font for nav links on mobile */
     }
 
     nav a:hover {
@@ -109,8 +115,8 @@
 
     section {
       max-width: 900px;
-      margin: 60px auto;
-      padding: 0 20px;
+      margin: 40px auto; /* Reduced vertical margin for mobile */
+      padding: 0 15px; /* Reduced horizontal padding for mobile */
       opacity: 0;
       transform: translateY(30px);
       animation: fadeUp 1s forwards;
@@ -145,8 +151,8 @@
     /* Gallery */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Min size reduced for mobile */
+      gap: 10px; /* Reduced gap for mobile */
       margin-top: 20px;
     }
 
@@ -167,20 +173,24 @@
 
 /* Dropdown button */
 .dropbtn {
-  padding: 10px 18px;
+  padding: 8px 12px; /* Adjusted padding to match nav links */
   border-radius: 12px;
   font-weight: 600;
   color: inherit;
   text-decoration: none;
   transition: 0.3s;
+  font-size: 0.9rem; /* Smaller font for dropdown button on mobile */
 }
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
   position: absolute;
+  /* Adjust position for mobile, potentially centered or left-aligned */
+  left: 50%;
+  transform: translateX(-50%);
   background: var(--dark-card);
-  min-width: 250px;
+  min-width: 200px; /* Reduced min-width for mobile */
   padding: 10px 0;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
@@ -194,6 +204,7 @@
   color: inherit;
   text-decoration: none;
   transition: 0.25s;
+  font-size: 0.9rem; /* Smaller font inside dropdown */
 }
 
 /* Hover highlight */
@@ -223,11 +234,88 @@
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 10px 18px; /* same as nav links */
+  padding: 8px 12px; /* same as nav links */
   border-radius: 12px;
   font-weight: 600;
   color: inherit;
   text-decoration: none;
+}
+
+/* --- Masonry/Column Layout Adjustments for Mobile --- */
+
+/* Default setting for masonry (desktop) */
+.masonry {
+    column-count: 3;
+    column-gap: 20px;
+}
+
+/* Override Masonry for small screens */
+@media (max-width: 768px) {
+    /* For smaller screens, force single column layout */
+    .masonry {
+        column-count: 1 !important;
+        column-gap: 0 !important;
+    }
+    
+    /* Ensure items in the masonry layout still have their margin */
+    .masonry-item {
+        margin-bottom: 20px !important;
+        /* Ensure items fill the space for single column */
+        width: 100% !important; 
+    }
+}
+
+
+/* Specific fix for the Purdue WALC row which is not a standard masonry layout */
+.masonry-row {
+    display: flex;
+    flex-direction: row; /* Default: horizontal */
+    align-items: center;
+    gap: 30px;
+}
+
+/* Stack the WALC images vertically on mobile */
+@media (max-width: 600px) {
+    .masonry-row {
+        flex-direction: column; /* Stack vertically on small screens */
+        gap: 15px; /* Reduced gap */
+    }
+    .masonry-item {
+        width: 100% !important;
+    }
+    /* Hide the arrows on the stacked mobile view */
+    .masonry-row > div:nth-child(even) {
+        display: none;
+    }
+}
+
+
+/* --- General Mobile Font Size Adjustments --- */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2.5rem; /* Smaller main heading */
+    }
+    header p {
+        font-size: 1rem; /* Smaller subheading */
+    }
+    section h2 {
+        font-size: 1.5rem; /* Smaller section headings */
+    }
+    /* Hide float shapes on very small screens to save space/performance */
+    .float-shape {
+        display: none;
+    }
+}
+
+.custom-link {
+    color: var(--dark-accent);
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.custom-link:hover {
+    text-decoration: underline;
 }
 
   </style>
@@ -458,7 +546,6 @@ IEEE International Conference on Rebooting Computing (ICRC) - First Author</stro
 <h2 style="text-align:center;">3D Animation</h2>
 
 
-<!-- Pinterest-style masonry collage -->
 <div class="masonry" style="column-count:3; column-gap:20px;">
 
 
@@ -541,7 +628,6 @@ IEEE International Conference on Rebooting Computing (ICRC) - First Author</stro
 
 
 <br/>
-<!-- Pinterest-style masonry collage -->
 <div class="masonry" style="display:flex; flex-direction:column; align-items:center; gap:20px;">
 
 
@@ -593,7 +679,6 @@ Purdue WALC – From concept to creation.
     margin:0 auto;
 ">
 
-  <!-- Artwork 1 -->
   <div class="masonry-item" style="
       break-inside:avoid;
       margin-bottom:25px;
@@ -607,7 +692,6 @@ Purdue WALC – From concept to creation.
     <p style="margin-top:10px; text-align:center; opacity:0.85;">Wave</p>
   </div>
 
-  <!-- Artwork 2 -->
   <div class="masonry-item" style="
       break-inside:avoid;
       margin-bottom:25px;
@@ -620,8 +704,7 @@ Purdue WALC – From concept to creation.
          style="width:100%; border-radius:14px; object-fit:cover;" />
     <p style="margin-top:10px; text-align:center; opacity:0.85;">Innocence</p>
   </div>
-   <!-- Artwork 2 -->
-  <div class="masonry-item" style="
+   <div class="masonry-item" style="
       break-inside:avoid;
       margin-bottom:25px;
       background:var(--dark-card);
@@ -634,7 +717,6 @@ Purdue WALC – From concept to creation.
     <p style="margin-top:10px; text-align:center; opacity:0.85;">Black and White</p>
   </div>
 
-  <!-- Artwork 3 -->
   <div class="masonry-item" style="
       break-inside:avoid;
       margin-bottom:25px;
@@ -650,7 +732,6 @@ Purdue WALC – From concept to creation.
 
 </div>
 
-<!-- Call-to-action link -->
 <p style="
     text-align:center;
     margin-top:25px;
@@ -697,4 +778,3 @@ Purdue WALC – From concept to creation.
 
 </body>
 </html>
-
