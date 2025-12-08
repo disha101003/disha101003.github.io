@@ -1,31 +1,700 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Your Name — Homepage</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disha Maheshwari</title>
+
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 720px; margin: 4rem auto; padding: 0 1rem; }
-    header { margin-bottom: 2rem; }
-    footer { margin-top: 3rem; color: #666; font-size: 0.9rem; }
+    :root {
+      --pastel-light-bg: #f6f3ff;
+      --pastel-light-text: #1b1b1b;
+      --pastel-accent-1: #d9caff;
+      --pastel-accent-2: #ffd6e8;
+      --pastel-accent-3: #c9f4ff;
+
+      --dark-bg: #1e1e1e;
+      --dark-card: #2a2a2a;
+      --dark-text: #f0f0f0;
+      --dark-accent: #b8aaff;
+
+      --transition-speed: 0.4s;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: var(--dark-bg);
+      color: var(--dark-text);
+      transition: background var(--transition-speed), color var(--transition-speed);
+      overflow-x: hidden;
+    }
+
+    /* Light Mode */
+    body.light {
+      background: var(--pastel-light-bg);
+      color: var(--pastel-light-text);
+    }
+
+    header {
+      padding: 70px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    header p {
+      max-width: 650px;
+      margin: 15px auto 0 auto;
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+
+    /* Floating pastel shapes */
+    .float-shape {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: var(--pastel-accent-1);
+      border-radius: 50%;
+      filter: blur(60px);
+      animation: float 8s ease-in-out infinite;
+      opacity: 0.6;
+    }
+    .shape2 { background: var(--pastel-accent-2); animation-duration: 10s; }
+    .shape3 { background: var(--pastel-accent-3); animation-duration: 12s; }
+
+    @keyframes float {
+      0% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-40px) translateX(30px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: transparent;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+    }
+
+    nav a {
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: 0.3s;
+      color: inherit;
+    }
+
+    nav a:hover {
+      background: var(--dark-accent);
+      color: black;
+      box-shadow: 0 0 12px var(--dark-accent);
+    }
+
+    body.light nav a:hover {
+      background: var(--pastel-accent-2);
+      box-shadow: 0 0 12px var(--pastel-accent-2);
+    }
+
+    section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+
+    .card {
+      background: var(--dark-card);
+      padding: 20px;
+      border-radius: 16px;
+      margin-top: 20px;
+      transition: 0.3s;
+      border: 1px solid #3a3a3a;
+    }
+
+    body.light .card {
+      background: white;
+      border: 1px solid #e2e2e2;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: var(--dark-card);
+  min-width: 250px;
+  padding: 10px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  z-index: 50;
+}
+
+/* Links inside dropdown */
+.dropdown-content a {
+  display: block;
+  padding: 8px 16px;
+  color: inherit;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+/* Hover highlight */
+.dropdown-content a:hover {
+  background: var(--dark-accent);
+  color: black;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Highlight Projects button on hover */
+.dropdown:hover .dropbtn {
+  background: var(--dark-accent);
+  color: black;
+}
+/* Keep dropdown aligned with other navbar links */
+.dropdown {
+  display: flex;
+  align-items: center;
+}
+
+/* Make Projects button match navbar height */
+.dropbtn {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 10px 18px; /* same as nav links */
+  border-radius: 12px;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
   </style>
 </head>
+
 <body>
+
+  <div class="float-shape" style="top: -40px; left: -40px"></div>
+  <div class="float-shape shape2" style="top: 150px; right: -30px"></div>
+  <div class="float-shape shape3" style="bottom: -60px; left: 30%"></div>
+
   <header>
-    <h1>Your Name</h1>
-    <p>Welcome to my GitHub Pages site — built with <strong>dishamah101003.github.io</strong>.</p>
+    <div style="max-width:800px; margin:0 auto; text-align:center;">
+      <h1 style="margin-bottom:10px;">Disha Maheshwari</h1>
+      <p style="font-size:1.3rem; opacity:0.9;">
+        A mind in pursuit, drifting through the spaces where intuition, engineering, and imagination intertwine.
+      </p>
+
+      <div style="margin-top:20px; font-size:1rem; opacity:0.8;">
+        <a href="https://www.linkedin.com/in/disha-m03/" target="_blank" style="text-decoration:none; color:inherit; font-weight:600;">LinkedIn</a>
+        <span style="margin:0 10px;">|</span>
+        <span>Contact: dsmahesh@purdue.edu</span>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <h2>About</h2>
-    <p>Write something short about yourself here.</p>
-  </main>
+  <nav>
+    <a href="#introduction">Introduction</a>
+    <a href="#research">Research</a>
+ <div class="dropdown">
+    <a href="#projects" class="dropbtn">Projects</a>
 
-  <footer>
-    <p>© <span id="year"></span> Your Name</p>
-  </footer>
+    <div class="dropdown-content">
+      <a href="#proj-gesture">Custom Gesture Recognition App (CES)</a>
+      <a href="#proj-wisebucks">Wisebucks.AI</a>
+      <a href="#proj-terrain">Procedural Terrain Modelling</a>
+      <a href="#proj-usb">USB Bulk Transfer SoC</a>
+      <a href="#proj-multicore">Multi-Core Processor</a>
+      <a href="#proj-debris">Autonomous Debris Vehicle</a>
+    </div>
+  </div>
+    <a href="#metals">Metal Work</a>
+    <a href="#modelling">3D Modelling</a>
+    <a href="#ceramics">Ceramics & Art</a>
+    <a href="#travel">Travelling</a>
+  </nav>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+   <section id="introduction">
+    <h2>Introduction</h2>
+    <div class="card">
+
+
+    </div>
+  </section>
+
+ <section id="research">
+    <h2>Research</h2>
+    
+<div class="card">
+<h2 style="margin-bottom:10px;">Bayesian Deep Learning</h2>
+<p><em>Professor Ruqi Zhang, Junbo Li <span style="float:right;">June 2024–July 2025</span></em></p>
+I developed SDSI, a variational inference framework that restricts posterior variances to a sparse, low-dimensional subspace, enabling scalable Bayesian neural networks with improved efficiency. The method introduces a subspace addition strategy that preserves high-gradient directions, resulting in enhanced predictive accuracy and calibration across both clean and corrupted datasets. SDSI achieved 76.36% accuracy, 0.9655 AUROC, and 0.0014 ECE on CIFAR-100 (10% subnet), outperforming Sparse BNNs, VBLL approaches, and Laplace Subnetworks. Notably, the framework reaches full BNN-level predictive performance while requiring only 40 training epochs, significantly reducing computational cost.
+</div>
+
+<div class="card">
+<h2 style="margin-bottom:10px;">Continual Learning</h2>
+<p style="font-style:italic; margin-bottom:5px;">
+<strong>ReScience C — First Author</strong><br>
+<a href="https://zenodo.org/records/14964875" 
+   target="_blank"
+   class="custom-link">
+  “[Re] BiRT: Bio-Inspired Replay in Vision Transformers” (Accepted)
+</a>
+
+<style>
+.custom-link {
+    color: var(--dark-accent);
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.custom-link:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+</p>
+
+
+<p style="line-height:1.55; opacity:0.9;">
+I conducted a reproducibility study on BiRT, a continual learning framework that leverages vision transformers
+with constructive noise and episodic memory replay to mitigate catastrophic forgetting. The project involved
+re-implementing the method, evaluating performance across multiple benchmarks, and analyzing the robustness and
+practical applicability of the approach. The resulting findings, which shed light on BiRT’s reproducibility and
+limitations, were published in <em>ReScience C</em>.
+</p>
+
+
+<p><em><span style="float:right;">Oct 2023–June 2024</span></em></p>
+
+
+<p style="margin-top:10px; opacity:0.8;">
+  <em>Special thanks to Jinen Setpal and ML@Purdue for their support and resources.</em>
+</p>
+
+</div>
+<div class="card">
+<h2 style="margin-bottom:10px;">Semiconductor Fabrication</h2>
+
+
+<p><em>Professor Muhammad Hussain, Min Sung Kim <span style="float:right;">Jan 2023–May 2023</span></em></p>
+
+<p style="line-height:1.55; opacity:0.9;">
+I worked inside the Birck Nano Center’s ISO-class cleanroom to manufacture MOSCAPs and gained end-to-end experience with semiconductor process integration. Over the semester, I performed thin-film deposition using ALD, PVD sputtering, and e-beam evaporation; executed photolithography patterning and reactive-ion etching steps; and carried out wafer thinning and electrical characterization workflows. I also analyzed the dielectric properties of HfO₂ gate oxides through IV and CV measurements, examining how interface behavior, oxide thickness, and material parameters influenced overall device performance.
+</p>
+<div style="margin:15px 0;">
+  <span style="
+      background:#ffdd57;
+      color:#000;
+      padding:3px 8px;
+      border-radius:6px;
+      font-size:0.85rem;
+      font-weight:600;
+      margin-right:8px;
+  ">NEWS</span>
+
+  <a href="https://engineering.purdue.edu/Engr/AboutUs/News/Spotlights/2023/2023-1113-vfablab"
+     target="_blank"
+     style="color:var(--dark-accent); font-weight:600; text-decoration:none;">
+    Course Spotlight
+  </a>
+</div><img src="images/poster.jpg" style="width:100%; border-radius:12px; margin-top:15px;" />
+
+
+
+</div>
+
+
+
+
+<div class="card">
+<h2 style="margin-bottom:10px;">Neuromorphic Computing</h2>
+<p><em>Dr Prassana Date, Dr Shruti Kulkarni<span style="float:right;">May 2023–Aug 2023</span></em></p>
+
+<p style="font-style:italic; margin-bottom:5px;">
+<strong>
+
+IEEE International Conference on Rebooting Computing (ICRC) - First Author</strong><br>
+<a href="https://doi.org/10.1109/ICRC60800.2023.10386808" 
+   target="_blank"
+   class="custom-link">
+  “An FPGA-Based Neuromorphic Processor with All-to-All Connectivity” (Accepted)
+</a>
+
+<style>
+.custom-link {
+    color: var(--dark-accent);
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.custom-link:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+</p>
+
+  <p style="line-height:1.55; opacity:0.9;">
+    I developed a preliminary implementation of an FPGA-based neuromorphic processor featuring all-to-all connectivity. The work demonstrated a low-cost and energy-efficient architecture implemented on an Artix-7 FPGA. During my research internship at Oak Ridge National Laboratory, I implemented Spiking Neural Networks (SNNs) in Verilog on the Basys3 development board using the Xilinx Vivado toolchain, validated the architecture on algorithmic test cases, and designed custom IP modules including UART transceivers, receivers, and FIFO buffers operating at 9600 bps. The resulting open-source implementation formed the basis of our conference publication and provides a foundation for further research toward a production-ready neuromorphic processor.
+  </p>
+</div>
+
+  </section>
+
+<section id="projects">
+  <h2>Projects</h2>
+
+  <div class="card" id="proj-gesture">Custom Gesture Recognition App (CES)</div>
+
+  <div class="card" id="proj-wisebucks">Wisebucks.AI</div>
+
+  <div class="card" id="proj-terrain">Procedural Modelling of Terrain</div>
+
+  <div class="card" id="proj-usb">USB Full-Speed Bulk-Transfer Endpoint AHB-Lite SoC Module</div>
+
+  <div class="card" id="proj-multicore">Multi-Core Processor</div>
+
+  <div class="card" id="proj-debris">Autonomous Debris Collection Vehicle</div>
+
+</section>
+
+ 
+  <section id="metals">
+    <h2>Metal Work</h2>
+  <div class="masonry" style="column-count:3; column-gap:20px;">
+
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+<img src="images/huani_knife.jpeg" style="width:100%; border-radius:12px; max-height:180px; object-fit:cover;" />
+<p style="margin-top:8px; text-align:center; opacity:0.8;">Hunai Knife</p>
+</div>
+
+
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+<img src="images/ring.jpeg" style="width:100%; border-radius:12px; max-height:180px; object-fit:cover;" />
+<p style="margin-top:8px; text-align:center; opacity:0.8;">Metal Ring</p>
+</div>
+
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+  <img src="images/flower.jpg" 
+       style="width:100%; border-radius:12px; object-fit:contain;" />
+  <p style="margin-top:8px; text-align:center; opacity:0.8;">Metal Rose</p>
+</div>
+
+</div>
+
+  </section>
+
+  <section id="modelling">
+  
+<h2 style="text-align:center;">3D Animation</h2>
+
+
+<!-- Pinterest-style masonry collage -->
+<div class="masonry" style="column-count:3; column-gap:20px;">
+
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+<video controls style="width:100%; border-radius:12px;">
+<source src="https://raw.githubusercontent.com/disha101003/CGT-241/main/241001_EX1_Maheshwari_Disha.mp4" type="video/mp4">
+</video>
+<p style="margin-top:8px; font-size:0.9rem; text-align:center; opacity:0.8;">Solar System</p>
+</div>
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+<video controls style="width:100%; border-radius:12px;">
+<source src="https://raw.githubusercontent.com/disha101003/CGT-241/main/241001_P1_Maheshwari_D.mp4" type="video/mp4">
+</video>
+<p style="margin-top:8px; font-size:0.9rem;text-align:center; opacity:0.8;">Bedroom Scene</p>
+</div>
+
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+<video controls style="width:100%; border-radius:12px;">
+<source src="https://raw.githubusercontent.com/disha101003/CGT-241/main/241001_EX2_Maheshwari_Disha.mp4" type="video/mp4">
+</video>
+<p style="margin-top:8px; font-size:0.9rem;text-align:center; opacity:0.8;">Telephone</p>
+</div>
+
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+<video controls style="width:100%; border-radius:12px;">
+<source src="https://raw.githubusercontent.com/disha101003/CGT-241/main/final_project_cgt_241.mp4" type="video/mp4">
+</video>
+<p style="margin-top:8px; font-size:0.9rem; text-align:center; opacity:0.8;">An Alien Story</p>
+</div>
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+<video controls style="width:100%; border-radius:12px;">
+<source src="https://raw.githubusercontent.com/disha101003/CGT-241/main/241001_EX6_Maheshwari_D.mp4" type="video/mp4">
+</video>
+<p style="margin-top:8px; font-size:0.9rem; text-align:center; opacity:0.8;">Character Modelling</p>
+</div>
+
+</div>
+
+
+</div>
+
+<h2 style="text-align:center;">CAD Modelling</h2>
+<div class="masonry" style="column-count:3; column-gap:20px;">
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:12px; background:var(--dark-card); padding:6px; border-radius:12px;">
+  <img src="images/wheel.png" style="width:100%; border-radius:8px;" />
+  <p style="margin-top:4px; text-align:center; opacity:0.8; font-size:0.8rem;">Wheel</p>
+</div>
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:12px; background:var(--dark-card); padding:6px; border-radius:12px;">
+  <img src="images/microscope.png" style="width:100%; border-radius:8px;" />
+  <p style="margin-top:4px; text-align:center; opacity:0.8; font-size:0.8rem;">Microscope</p>
+</div>
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:12px; background:var(--dark-card); padding:6px; border-radius:12px;">
+  <img src="images/pillar.png" style="width:100%; border-radius:8px;" />
+  <p style="margin-top:4px; text-align:center; opacity:0.8; font-size:0.8rem;">Pillar</p>
+</div>
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:12px; background:var(--dark-card); padding:6px; border-radius:12px;">
+  <img src="images/plane.png" style="width:100%; border-radius:8px;" />
+  <p style="margin-top:4px; text-align:center; opacity:0.8; font-size:0.8rem;">Plane</p>
+</div>
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:12px; background:var(--dark-card); padding:6px; border-radius:12px;">
+  <img src="images/purdue_arch.png" style="width:100%; border-radius:8px;" />
+  <p style="margin-top:4px; text-align:center; opacity:0.8; font-size:0.8rem;">Purdue Arch</p>
+</div>
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:12px; background:var(--dark-card); padding:6px; border-radius:12px;">
+  <img src="images/engineering_fountain.png" style="width:100%; border-radius:8px;" />
+  <p style="margin-top:4px; text-align:center; opacity:0.8; font-size:0.8rem;">Purdue Engineering Fountain</p>
+</div>
+
+
+</div>
+
+
+<br/>
+<!-- Pinterest-style masonry collage -->
+<div class="masonry" style="display:flex; flex-direction:column; align-items:center; gap:20px;">
+
+
+<div class="masonry-row" style="display:flex; align-items:center; gap:30px;">
+
+
+<div class="masonry-item" style="background:var(--dark-card); padding:12px; border-radius:18px; width:240px;">
+<img src="images/walc.png" style="width:100%; border-radius:14px;" />
+</div>
+
+
+<div style="font-size:40px; opacity:0.8;">➜</div>
+
+
+<div class="masonry-item" style="background:var(--dark-card); padding:12px; border-radius:18px; width:240px;">
+<img src="images/walc2.png" style="width:100%; border-radius:14px;" />
+</div>
+
+
+<div style="font-size:40px; opacity:0.8;">➜</div>
+
+
+<div class="masonry-item" style="background:var(--dark-card); padding:12px; border-radius:18px; width:240px;">
+<img src="images/walc3.jpeg" style="width:100%; border-radius:14px;" />
+</div>
+</div>
+
+<div class="caption-card" style="background:var(--dark-card); padding:14px 20px; border-radius:16px; text-align:center; opacity:0.9; max-width:600px;\">
+Purdue WALC – From concept to creation.
+</div>
+
+
+</div>
+
+
+  </section>
+
+<section id="ceramics">
+
+
+<h2 style="text-align:center; margin:40px 0 20px; font-size:2rem;">
+  Art
+</h2>
+
+<div class="masonry" style="
+    column-count:3;
+    column-gap:25px;
+    max-width:1000px;
+    margin:0 auto;
+">
+
+  <!-- Artwork 1 -->
+  <div class="masonry-item" style="
+      break-inside:avoid;
+      margin-bottom:25px;
+      background:var(--dark-card);
+      padding:12px;
+      border-radius:18px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.25);
+  ">
+    <img src="images/wave2.jpeg"
+         style="width:100%; border-radius:14px;object-fit:cover;" />
+    <p style="margin-top:10px; text-align:center; opacity:0.85;">Wave</p>
+  </div>
+
+  <!-- Artwork 2 -->
+  <div class="masonry-item" style="
+      break-inside:avoid;
+      margin-bottom:25px;
+      background:var(--dark-card);
+      padding:12px;
+      border-radius:18px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.25);
+  ">
+    <img src="images/Painting 2.jpeg"
+         style="width:100%; border-radius:14px; object-fit:cover;" />
+    <p style="margin-top:10px; text-align:center; opacity:0.85;">Innocence</p>
+  </div>
+   <!-- Artwork 2 -->
+  <div class="masonry-item" style="
+      break-inside:avoid;
+      margin-bottom:25px;
+      background:var(--dark-card);
+      padding:12px;
+      border-radius:18px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.25);
+  ">
+    <img src="images/art.jpeg"
+         style="width:100%; border-radius:14px; object-fit:cover;" />
+    <p style="margin-top:10px; text-align:center; opacity:0.85;">Black and White</p>
+  </div>
+
+  <!-- Artwork 3 -->
+  <div class="masonry-item" style="
+      break-inside:avoid;
+      margin-bottom:25px;
+      background:var(--dark-card);
+      padding:12px;
+      border-radius:18px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.25);
+  ">
+    <img src="images\Old woman painting.JPEG"
+         style="width:100%; border-radius:14px;  object-fit:cover;" />
+    <p style="margin-top:10px; text-align:center; opacity:0.85;">Wisdom</p>
+  </div>
+
+</div>
+
+<!-- Call-to-action link -->
+<p style="
+    text-align:center;
+    margin-top:25px;
+    font-size:1rem;
+    opacity:0.9;
+">
+  For more of my artwork, visit
+  <a href="https://dishamah2003.wixsite.com/disha/paintings" 
+     target="_blank" 
+     style="color:var(--dark-accent); font-weight:600; text-decoration:none;">
+    my art portfolio 
+  </a>
+</p>
+<h2>Ceramics</h2>
+<div class="masonry" style="column-count:3; column-gap:20px;">
+
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+<img src="images/pumpkin.jpeg" style="width:100%; border-radius:12px; max-height:180px; object-fit:cover;" />
+<p style="margin-top:8px; text-align:center; opacity:0.8;">Pumpkin</p>
+</div>
+
+
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+<img src="images/ghost.jpeg" style="width:100%; border-radius:12px; max-height:180px; object-fit:cover;" />
+<p style="margin-top:8px; text-align:center; opacity:0.8;">Ghost</p>
+</div>
+
+
+<div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+<img src="images/bowl.jpeg" style="width:100%; border-radius:12px; max-height:180px; object-fit:cover;" />
+<p style="margin-top:8px; text-align:center; opacity:0.8;">Bowl</p>
+</div>
+</div>
+</section>
+
+  <section id="travel">
+    <h2>Travelling</h2>
+    <div class="card">Travel stories.</div>
+  </section>
+
+  
+
 </body>
 </html>
 
