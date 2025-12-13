@@ -18,6 +18,9 @@
       --dark-text: #f0f0f0;
       --dark-accent: #b8aaff;
 
+      /* Primary link color (pink) */
+      --link-pink: #ff66b2;
+
       --transition-speed: 0.4s;
     }
 
@@ -134,6 +137,53 @@
       margin-top: 20px;
       transition: 0.3s;
       border: 1px solid #3a3a3a;
+    }
+
+    /* Project media styling (videos, iframes) */
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .project-media {
+      width: 100%;
+      max-width: 640px;
+      display: block;
+      margin: 12px auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .project-img {
+      width: 100%;
+      max-width: 320px;
+      display: block;
+      margin: 8px auto;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    /* Make all hyperlinks pink and ensure they override inline styles */
+    a, a:link, a:visited {
+      color: var(--link-pink) !important;
+      text-decoration: none !important;
+    }
+
+    a:hover, a:focus {
+      color: #ff3b8a !important;
+      text-decoration: underline !important;
+    }
+
+    /* EXCEPTION: keep header links using inherited/header styles */
+    header a, header a:link, header a:visited {
+      color: inherit !important;
+      text-decoration: none !important;
+    }
+
+    /* Ensure nav and dropdown links use the same pink */
+    nav a, .dropdown-content a, .dropbtn {
+      color: var(--link-pink) !important;
     }
 
     body.light .card {
@@ -300,7 +350,7 @@
 /* End of Media Query */
 
 .custom-link {
-    color: var(--dark-accent);
+  color: var(--link-pink);
     font-weight: 600;
     text-decoration: none;
     transition: 0.3s;
@@ -365,6 +415,7 @@
    <section id="introduction">
     <h2 style="text-align:center;">
 Introduction</h2>
+I am a software engineer working at Amazon. I graduated from Purdue University in May 2025 with a B.S in Computer Engineering and a minor in Mathematics. My interdisciplinary education spans AI, Computer Graphics, Embedded Systems, Chip Design, and Software Engineering, equipping me with skills to tackle multidisciplinary problems. I welcome every opportunity to connect and network, so feel free to reach out!
     <div class="card">
 
 
@@ -395,7 +446,7 @@ I developed SDSI, a variational inference framework that restricts posterior var
 
 <style>
 .custom-link {
-    color: var(--dark-accent);
+  color: var(--link-pink);
     font-weight: 600;
     text-decoration: none;
     transition: 0.3s;
@@ -447,9 +498,9 @@ I worked inside the Birck Nano Center’s ISO-class cleanroom to manufacture MOS
       margin-right:8px;
   ">NEWS</span>
 
-  <a href="https://engineering.purdue.edu/Engr/AboutUs/News/Spotlights/2023/2023-1113-vfablab"
-     target="_blank"
-     style="color:var(--dark-accent); font-weight:600; text-decoration:none;">
+    <a href="https://engineering.purdue.edu/Engr/AboutUs/News/Spotlights/2023/2023-1113-vfablab"
+      target="_blank"
+      style="color:var(--link-pink); font-weight:600; text-decoration:none;">
     Course Spotlight
   </a>
 </div><img src="images/poster.jpg" style="width:100%; border-radius:12px; margin-top:15px;" />
@@ -477,7 +528,7 @@ IEEE International Conference on Rebooting Computing (ICRC) - First Author</stro
 
 <style>
 .custom-link {
-    color: var(--dark-accent);
+  color: var(--link-pink);
     font-weight: 600;
     text-decoration: none;
     transition: 0.3s;
@@ -492,27 +543,65 @@ IEEE International Conference on Rebooting Computing (ICRC) - First Author</stro
 </p>
 
   <p style="line-height:1.55; opacity:0.9;">
-    I developed a preliminary implementation of an FPGA-based neuromorphic processor featuring all-to-all connectivity. The work demonstrated a low-cost and energy-efficient architecture implemented on an Artix-7 FPGA. During my research internship at Oak Ridge National Laboratory, I implemented Spiking Neural Networks (SNNs) in Verilog on the Basys3 development board using the Xilinx Vivado toolchain, validated the architecture on algorithmic test cases, and designed custom IP modules including UART transceivers, receivers, and FIFO buffers operating at 9600 bps. The resulting open-source implementation formed the basis of our conference publication and provides a foundation for further research toward a production-ready neuromorphic processor.
+    I developed a preliminary implementation of an FPGA-based neuromorphic processor featuring all-to-all connectivity. The work demonstrated a low-cost and energy-efficient architecture implemented on an Artix-7 FPGA. During my research internship at Oak Ridge National Laboratory, We implemented Spiking Neural Networks (SNNs) in Verilog on the Basys3 development board using the Xilinx Vivado toolchain, validated the architecture on algorithmic test cases, and designed custom IP modules including UART transceivers, receivers, and FIFO buffers operating at 9600 bps. The resulting open-source implementation formed the basis of our conference publication and provides a foundation for further research toward a production-ready neuromorphic processor.
   </p>
 </div>
 
   </section>
 
 <section id="projects">
- <h2 style="text-align:center;">
-Projects</h2>
+ <h2 style="text-align:center;">Projects</h2>
 
-  <div class="card" id="proj-gesture">Custom Gesture Recognition App (CES)</div>
+  <div class="card" id="proj-gesture">
+    <h3>Custom Gesture Recognition App (CES)</h3>
+    <p>Developed a cross-platform app in Kivy (Python) for custom recognition of static hand gestures using lazy learning methods with OpenCV and MediaPipe. The app is lightweight, fast to train, and was presented at CES 2024.</p>
+    <video controls class="project-media">
+      <source src="images/app3.mp4" type="video/mp4">
+    </video>
+  </div>
 
-  <div class="card" id="proj-wisebucks">Wisebucks.AI</div>
+  <div class="card" id="proj-wisebucks">
+    <h3>Wisebucks.AI</h3>
+    <p>Won the John Martin Entrepreneurship Center Startup Incubator Competition ($6,000) for developing an integrated financial platform offering personalized insights, portfolio suggestions, trading simulations, and chatbot support. The project used open-source APIs, LLMs (OpenAI), and models like Financial BERT to perform real-time news sentiment analysis. View the code on <a href="https://github.com/disha101003/wisebucks.ai" target="_blank">GitHub</a>.</p>
+    <video controls class="project-media">
+      <source src="images/wisebucks.mp4" type="video/mp4">
+    </video>
+  </div>
 
-  <div class="card" id="proj-terrain">Procedural Modelling of Terrain</div>
+  <div class="card" id="proj-terrain">
+    <h3>Procedural Modelling of Terrain</h3>
+    <p>Developed a procedural terrain generation system using Perlin noise and fractal algorithms to create realistic landscapes with configurable roughness, elevation, and textures. <a href="https://github.com/disha101003/Procedural-Terrain-Generation" target="_blank">View Project on GitHub</a></p>
+    <div style="text-align:center;">
+      <!-- Embed local PDF (added as images/Final.Project.pdf) -->
+      <object data="images/Final.Project.pdf" type="application/pdf" class="project-media" style="height:520px; border:none;">
+        <p style="opacity:0.9;">Your browser does not support inline PDFs. <a href="images/Final.Project.pdf" target="_blank">Download the PDF</a> to view it.</p>
+      </object>
+      <p style="opacity:0.85; margin-top:8px;">If the PDF doesn't display inline, you can <a href="images/Final.Project.pdf" target="_blank">open/download it</a>.</p>
+    </div>
+  </div>
 
-  <div class="card" id="proj-usb">USB Full-Speed Bulk-Transfer Endpoint AHB-Lite SoC Module</div>
+  <div class="card" id="proj-usb">
+    <h3>USB Full-Speed Bulk-Transfer Endpoint AHB-Lite SoC Module</h3>
+    <p>A hardware/software module implementing USB full-speed bulk transfer endpoint integrated with an AHB-Lite SoC bus.</p>
+    <object data="images/ECE 337 CDL.pdf" type="application/pdf" class="project-media" style="height:520px; border:none;">
+        <p style="opacity:0.9;">Your browser does not support inline PDFs. <a href="images/ECE 337 CDL.pdf" target="_blank">Download the PDF</a> to view it.</p>
+    </object>
+  </div>
 
-  <div class="card" id="proj-multicore">Multi-Core Processor</div>
+  <div class="card" id="proj-multicore">
+    <h3>Multi-Core Processor: Purdue ECE 437</h3>
+    <p>Built a dual-core pipelined MSI-coherent processor with LR/SC snooping caches and a RISC-V-compliant memory controller, designed a single-core, 5-stage RISC-V pipeline with split instruction and data caches, and implemented a branch predictor that improved execution speed by an average of 25% across varying memory latencies.</p>
+  </div>
 
-  <div class="card" id="proj-debris">Autonomous Debris Collection Vehicle</div>
+  <div class="card" id="proj-debris">
+    <h3>Autonomous Debris Collection Vehicle</h3>
+    <p>Built an automated, remotely controlled debris-collection vehicle using Micro:bits and Robo:bits with ultrasonic sensors for collision avoidance.</p>
+    <div class="masonry-item" style="break-inside:avoid; margin-bottom:20px; background:var(--dark-card); padding:10px; border-radius:16px;">
+      <img src="images/GarbageCollectionProject.jpeg" class="project-img" alt="Garbage Collection Vehicle" />
+      <p style="margin-top:8px; text-align:center; opacity:0.8;">Garbage Collection Vehicle</p>
+    </div>
+  </div>
+
 
 </section>
 
@@ -744,9 +833,9 @@ Purdue WALC – From concept to creation.
     opacity:0.9;
 ">
   For more of my artwork, visit
-  <a href="https://dishamah2003.wixsite.com/disha/paintings" 
-     target="_blank" 
-     style="color:var(--dark-accent); font-weight:600; text-decoration:none;">
+    <a href="https://dishamah2003.wixsite.com/disha/paintings" 
+      target="_blank" 
+      style="color:var(--link-pink); font-weight:600; text-decoration:none;">
     my art portfolio 
   </a>
 </p>
