@@ -41,7 +41,7 @@
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     /* ─── SUBTLE PAPER TEXTURE ─── */
@@ -389,18 +389,21 @@
 
     .card p {
       font-size: 0.95rem;
-      line-height: 1.75;
+      line-height: 1.55;
       color: var(--text-soft);
     }
 
     .card ul {
       padding-left: 18px;
       font-size: 0.93rem;
-      line-height: 1.8;
+      line-height: 1.6;
       color: var(--text-soft);
     }
 
-    .card ul li { margin-bottom: 6px; }
+    .card ul li { margin-bottom: 4px; }
+
+    /* Work Experience: keep bullets, tighter spacing */
+    #workex .card ul li { margin-bottom: 2px; line-height: 1.45; }
 
     /* ─── FLAT, CV-STYLE ENTRIES (no card boxes) ─── */
     .card {
@@ -450,6 +453,26 @@
       box-shadow: var(--shadow-lg);
       border-color: var(--border2);
     }
+    /* Static bio photo (no expand) — floats right like the media previews */
+    .bio-photo {
+      float: right;
+      margin: 2px 0 12px 26px;
+      width: 190px;
+      max-width: 45%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(74,55,40,0.10);
+    }
+    .bio-photo img {
+      width: 100%;
+      aspect-ratio: 17 / 22;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transform: scale(1.12);   /* slight centred zoom */
+    }
+
     /* Portrait variant — for PDFs and tall photos (whole frame, centred) */
     .media-preview.portrait { width: 190px; }
     .media-preview.portrait .media-thumb {
@@ -556,6 +579,7 @@
     @media (max-width: 640px) {
       .media-preview { float: none; width: 100%; max-width: 420px; margin: 0 auto 16px; }
       .media-preview.portrait { width: 260px; }
+      .bio-photo { float: none; width: 260px; margin: 0 auto 16px; }
     }
 
     /* Tag / badge */
@@ -858,9 +882,16 @@
       <p class="section-label">00 — Introduction</p>
       <h2>Hello, I'm Disha</h2>
       <div class="card reveal">
-        <p>I am a software engineer working at Amazon. I graduated from Purdue University in May 2025 with a B.S in Computer Engineering and a minor in Mathematics. My interdisciplinary education spans AI, Computer Graphics, Embedded Systems, Chip Design, and Software Engineering, equipping me with skills to tackle multidisciplinary problems.</p>
-        <div class="divider"></div>
-        <p>I welcome every opportunity to connect and network, so feel free to reach out!</p>
+        <div class="card-split">
+          <div class="bio-photo">
+            <img src="images/jaipur.jpg" alt="Disha in Jaipur" />
+          </div>
+          <div class="card-text">
+            <p>I am an incoming ML PhD at GeorgiaTech. Previously, I worked as a software engineer at Amazon. I graduated from Purdue University in May 2025 with a B.S in Computer Engineering and a minor in Mathematics. My interdisciplinary education spans AI, Computer Graphics, Embedded Systems, Chip Design, and Software Engineering, equipping me with skills to tackle multidisciplinary problems.</p>
+            <div class="divider"></div>
+            <p>I welcome every opportunity to connect and network, so feel free to reach out!</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -942,6 +973,21 @@
       </div>
 
       <div class="card reveal">
+        <h2>Neuromorphic Computing</h2>
+        <div class="card-meta">
+          <span>Dr. Prasanna Date, Dr. Shruti Kulkarni · Oak Ridge National Laboratory</span>
+          <span>May 2023 – Aug 2023</span>
+        </div>
+        <div style="margin-bottom:14px;">
+          <span class="tag">First Author</span>
+          <span class="tag violet">IEEE ICRC · Accepted</span>
+        </div>
+        <p><a href="https://doi.org/10.1109/ICRC60800.2023.10386808" target="_blank">"An FPGA-Based Neuromorphic Processor with All-to-All Connectivity"</a></p>
+        <div class="divider"></div>
+        <p>I developed a preliminary implementation of an FPGA-based neuromorphic processor featuring all-to-all connectivity on an Artix-7 FPGA. Implemented Spiking Neural Networks (SNNs) in Verilog on the Basys3 board using Xilinx Vivado, validated architecture on algorithmic test cases, and designed custom IP modules including UART transceivers, receivers, and FIFO buffers at 9600 bps.</p>
+      </div>
+
+      <div class="card reveal">
         <div class="card-split">
           <div class="media-preview" role="button" tabindex="0" data-src="images/poster.jpg" data-type="img" data-title="Semiconductor Fabrication — Poster">
             <img class="media-thumb" src="images/poster.jpg" alt="Semiconductor fabrication poster" />
@@ -960,21 +1006,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="card reveal">
-        <h2>Neuromorphic Computing</h2>
-        <div class="card-meta">
-          <span>Dr. Prasanna Date, Dr. Shruti Kulkarni · Oak Ridge National Laboratory</span>
-          <span>May 2023 – Aug 2023</span>
-        </div>
-        <div style="margin-bottom:14px;">
-          <span class="tag">First Author</span>
-          <span class="tag violet">IEEE ICRC · Accepted</span>
-        </div>
-        <p><a href="https://doi.org/10.1109/ICRC60800.2023.10386808" target="_blank">"An FPGA-Based Neuromorphic Processor with All-to-All Connectivity"</a></p>
-        <div class="divider"></div>
-        <p>I developed a preliminary implementation of an FPGA-based neuromorphic processor featuring all-to-all connectivity on an Artix-7 FPGA. Implemented Spiking Neural Networks (SNNs) in Verilog on the Basys3 board using Xilinx Vivado, validated architecture on algorithmic test cases, and designed custom IP modules including UART transceivers, receivers, and FIFO buffers at 9600 bps.</p>
       </div>
     </section>
 
