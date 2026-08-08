@@ -480,6 +480,19 @@ portt      transform: scaleX(0);
       object-position: center;
       background: #fbf8f2;
     }
+    /* Link variant: fills the portrait frame and centers text vertically */
+    .media-preview.portrait .media-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      aspect-ratio: 17 / 22;
+      text-decoration: none;
+      color: var(--accent-d);
+      font-weight: 600;
+      padding: 12px;
+      background: #fbf8f2;
+    }
     /* Fixed landscape frame — cover-crop, so no black letterbox top/bottom */
     .media-thumb {
       width: 100%;
@@ -938,12 +951,8 @@ portt      transform: scaleX(0);
 
       <div class="card reveal">
         <div class="card-split">
-          <div class="media-preview portrait" role="button" tabindex="0" data-src="images/bnn.pdf" data-type="pdf" data-title="Bayesian Deep Learning — Paper">
-            <object class="media-thumb" data="images/bnn.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" type="application/pdf">
-              <p style="opacity:0.7; padding:16px;"><a href="images/bnn.pdf" target="_blank">Open the PDF</a></p>
-            </object>
-            <span class="expand-chip">⤢ Expand</span>
-          </div>
+          
+          
           <div class="card-text">
             <h2>Bayesian Deep Learning</h2>
             <div class="card-meta">
@@ -952,6 +961,7 @@ portt      transform: scaleX(0);
             </div>
             <p>I developed SDSI, a variational inference framework that restricts posterior variances to a sparse, low-dimensional subspace, enabling scalable Bayesian neural networks with improved efficiency. The method introduces a subspace addition strategy that preserves high-gradient directions, resulting in enhanced predictive accuracy and calibration across both clean and corrupted datasets.</p>
             <p style="margin-top:12px;">SDSI achieved <strong style="color:var(--accent-d);">76.36% accuracy</strong>, <strong style="color:var(--accent-d);">0.9655 AUROC</strong>, and <strong style="color:var(--accent-d);">0.0014 ECE</strong> on CIFAR-100 (10% subnet), outperforming Sparse BNNs, VBLL approaches, and Laplace Subnetworks. The framework reaches full BNN-level predictive performance in only 40 training epochs.</p>
+            <p style="margin-top:12px;"><a href="images/bnn.pdf" target="_blank" rel="noopener">Open <em>Bayesian Subnet Inference for Deterministic Neural Networks</em></a></p>
           </div>
         </div>
       </div>
