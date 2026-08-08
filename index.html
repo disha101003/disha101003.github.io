@@ -480,6 +480,11 @@ portt      transform: scaleX(0);
       object-position: center;
       background: #fbf8f2;
     }
+    /* Photos: fill the portrait frame (no letterbox) */
+    .media-preview.portrait img.media-thumb {
+      object-fit: cover;
+      background: transparent;
+    }
     /* Link variant: fills the portrait frame and centers text vertically */
     .media-preview.portrait .media-link {
       display: flex;
@@ -1033,6 +1038,28 @@ portt      transform: scaleX(0);
       <p class="section-label">03 — Projects</p>
       <h2>Selected Work</h2>
 
+      <div class="card reveal" id="proj-multicore">
+        <h3>Multi-Core Processor</h3>
+        <div class="card-meta"><span>Purdue ECE 437</span></div>
+        <p>Built a dual-core pipelined MSI-coherent processor with LR/SC snooping caches and a RISC-V-compliant memory controller. Designed a single-core, 5-stage RISC-V pipeline with split instruction and data caches, and implemented a branch predictor that improved execution speed by an average of 25% across varying memory latencies.</p>
+      </div>
+
+      <div class="card reveal" id="proj-usb">
+        <div class="card-split">
+          <div class="media-preview portrait" role="button" tabindex="0" data-src="images/ECE 337 CDL.pdf" data-type="pdf" data-title="USB Bulk-Transfer SoC — Report">
+            <object class="media-thumb" data="images/ECE 337 CDL.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" type="application/pdf">
+              <p style="opacity:0.7; padding:16px;"><a href="images/ECE 337 CDL.pdf" target="_blank">Open the PDF</a></p>
+            </object>
+            <span class="expand-chip">⤢ Expand</span>
+          </div>
+          <div class="card-text">
+            <h3>USB Full-Speed Bulk-Transfer Endpoint AHB-Lite SoC Module</h3>
+            <div class="card-meta"><span>Purdue ECE 337</span></div>
+            <p>A hardware/software module implementing USB full-speed bulk transfer endpoint integrated with an AHB-Lite SoC bus.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="card reveal" id="proj-gesture">
         <div class="card-split">
           <div class="media-preview" role="button" tabindex="0" data-src="images/app3.mp4" data-type="video" data-title="Custom Gesture Recognition App">
@@ -1076,27 +1103,6 @@ portt      transform: scaleX(0);
             <p style="margin-top:10px;"><a href="https://github.com/disha101003/Procedural-Terrain-Generation" target="_blank">View on GitHub →</a></p>
           </div>
         </div>
-      </div>
-
-      <div class="card reveal" id="proj-usb">
-        <div class="card-split">
-          <div class="media-preview portrait" role="button" tabindex="0" data-src="images/ECE 337 CDL.pdf" data-type="pdf" data-title="USB Bulk-Transfer SoC — Report">
-            <object class="media-thumb" data="images/ECE 337 CDL.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" type="application/pdf">
-              <p style="opacity:0.7; padding:16px;"><a href="images/ECE 337 CDL.pdf" target="_blank">Open the PDF</a></p>
-            </object>
-            <span class="expand-chip">⤢ Expand</span>
-          </div>
-          <div class="card-text">
-            <h3>USB Full-Speed Bulk-Transfer Endpoint AHB-Lite SoC Module</h3>
-            <p>A hardware/software module implementing USB full-speed bulk transfer endpoint integrated with an AHB-Lite SoC bus.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card reveal" id="proj-multicore">
-        <h3>Multi-Core Processor</h3>
-        <div class="card-meta"><span>Purdue ECE 437</span></div>
-        <p>Built a dual-core pipelined MSI-coherent processor with LR/SC snooping caches and a RISC-V-compliant memory controller. Designed a single-core, 5-stage RISC-V pipeline with split instruction and data caches, and implemented a branch predictor that improved execution speed by an average of 25% across varying memory latencies.</p>
       </div>
 
       <div class="card reveal" id="proj-debris">
